@@ -1,0 +1,7 @@
+{
+  "imap_user": "youraddress@gmail.com",
+  "imap_pass": "your-16-char-app-password",
+  "imap_host": "imap.gmail.com",
+  "alias_prefix": "treg",
+  "base_url": "https://treg.to"
+}

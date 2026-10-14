@@ -1,0 +1,6 @@
+config.json
+treg_accounts.jsonl
+treg_farm_state.json
+*.log
+__pycache__/
+.venv/
