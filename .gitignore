@@ -21,3 +21,10 @@ dashboard/gw.pid
 dashboard/dash_run.log
 dashboard/imported_bank.jsonl
 data/
+treg_catchall_bank.jsonl
+treg_voidash_bank.jsonl
+treg_realmail_bank.jsonl
+*_bank.jsonl
+*.jsonl
+loop_catchall.log
+ca_wave.log

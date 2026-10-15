@@ -18,6 +18,11 @@ gmail = $0 for alias farms because of the inbox dedupe).
   (`window.tregCaptcha.token('email_start')`, instant PASS tokens) + 30 req/15 min per-IP pacing
 - `domains.json` — machine-readable verdict matrix (regenerate: `python build_domains_json.py`)
 - `treg_farm_v3.py` — current farm core (turnstile era) incl. `TokenFactory`
+- `treg_catchall.py` — **the money maker**: own catch-all domains (ForwardEmail → Gmail IMAP OTP).
+  `TREG_CATCHALL_GMAIL` + `GMAIL_APP_PW` env; `python treg_catchall.py 50 --pace 40`
+- `ca_loop.sh` — endless wave chainer (`N=50 PACE=25 ./ca_loop.sh`)
+- `treg_voidash.py` — voidash.com temp-inbox door ($1 per fresh inbox)
+- `treg_realmail.py` — real mailbox door (proton etc., bank-fed)
 - `treg_outlook.py` — treg registration through real Outlook/Hotmail mailboxes (Graph OTP, no IMAP)
 - `OUTLOOK_AUTOREG.md` — Outlook mass-autoreg toolchain (free Arkose press&hold, MIT fork)
 - `WP_REGISTER_API.md` — decoded WP Holding (wp.pl / o2.pl / tlen.pl) register API contract
