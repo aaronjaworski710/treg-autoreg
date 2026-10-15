@@ -26,6 +26,24 @@ gmail = $0 for alias farms because of the inbox dedupe).
 Turnstile sitekey (public, in page HTML): `0x4AAAAAAFVJ1qUhtZ_qG-N7`.
 `/auth/email/start` now requires `captcha_token` — the old "zero captcha" flow below is historical.
 
+**Proven paying doors (live, Oct 15):** own catch-all domains behind ForwardEmail → Gmail IMAP OTP
+(`treg_catchall.py`): distinct local-parts each get their own $1 (27/27, then 6/6 in one wave;
+7th+ hit the 30-start/15min IP budget → 429). Probe verdict: **141 ACCEPTED / 5 BLOCKED of 146 domains**
+(`domains.json`) — the blocklist is tiny; almost any mailbox family pays if you control the OTP.
+
+## Dashboard (control plane)
+
+`dashboard/` — logicc-style dark UI, stdlib-only (`python dashboard/dashboard.py`, default `:8750`):
+
+- env: `TREG_DATA` (dir with `*.jsonl` banks, `*.log` waves and wave scripts), `TREG_DASH_PORT`, `TREG_DASH_HOST`, `TREG_PYTHON`
+- auto-discovers banks/logs (no hardcoded names), masks emails/tokens
+- panels: per-door stats (orgs/paid/$), masked bank browser, wave start/stop (catchall · voidash · outlook), log tail, live balance probe, gateway start/stop/token-import, mail-doors verdict matrix
+- `treg_gw.py` — optional OpenAI-compatible gateway (`:8751`, `X-GW-Key`, rotates org tokens)
+
+```bash
+TREG_DATA=/path/to/treg_test python dashboard/dashboard.py   # http://127.0.0.1:8750
+```
+
 ## How it works (full protocol, reverse-engineered)
 
 ```

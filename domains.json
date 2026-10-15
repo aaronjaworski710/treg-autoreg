@@ -1,59 +1,91 @@
 {
- "generated": "2026-10-15 17:42:57",
+ "generated": "2026-10-15 18:31:59",
  "source": "treg.to /auth/email/start probe (domain_probe3.py, TokenFactory PASS tokens)",
- "total": 82,
- "accepted_count": 80,
- "blocked_count": 2,
+ "total": 146,
+ "accepted_count": 141,
+ "blocked_count": 5,
  "accepted": [
   "126.com",
+  "139.com",
   "163.com",
+  "189.cn",
+  "abv.bg",
+  "adinet.com.uy",
   "alice.it",
+  "aliyun.com",
   "amorki.pl",
+  "ancel.com.uy",
   "aol.com",
   "aon.at",
   "atlas.sk",
   "azet.sk",
   "bk.ru",
   "bluewin.ch",
+  "bol.com.br",
   "buziaczek.pl",
   "centrum.cz",
+  "citromail.hu",
+  "claro.net.ar",
+  "clix.pt",
   "cock.li",
+  "daum.net",
   "delfi.lt",
   "disroot.org",
   "elude.in",
   "email.cz",
   "email.ua",
+  "entel.cl",
   "fastmail.com",
+  "fibertel.com.ar",
+  "foxmail.com",
+  "free.fr",
+  "freemail.hu",
+  "globo.com",
   "gmail.com",
   "gmx.at",
   "gmx.ch",
   "gmx.com",
   "gmx.de",
+  "gmx.net",
+  "hanmail.net",
   "hispeed.ch",
   "hot.ee",
   "hotmail.com",
+  "hotmail.com.ar",
   "hushmail.com",
   "i.ua",
   "icloud.com",
+  "ig.com.br",
+  "in.gr",
   "inbox.lv",
   "inbox.ru",
   "interia.pl",
+  "laposte.net",
   "lavabit.com",
   "libero.it",
   "list.ru",
   "live.com",
+  "mail.bg",
   "mail.com",
   "mail.ee",
   "mail.lv",
   "mail.ru",
+  "mail.ru.com",
   "mailbox.org",
   "mailfence.com",
   "me.com",
   "meta.ua",
+  "meta.ua.com",
+  "myabv.com",
+  "mynet.com",
+  "nate.com",
+  "naver.com",
   "o2.pl",
   "one.lt",
   "onet.pl",
   "op.pl",
+  "orange.fr",
+  "otenet.gr",
   "outlook.com",
   "pm.me",
   "poczta.fm",
@@ -62,11 +94,25 @@
   "proton.me",
   "protonmail.com",
   "qq.com",
+  "r7.com",
   "rambler.ru",
+  "rediffmail.com",
   "runbox.com",
+  "sapo.pt",
+  "scarlet.be",
   "seznam.cz",
+  "sfr.fr",
+  "sify.com",
+  "sina.cn",
+  "sina.com",
+  "sohu.com",
   "startmail.com",
+  "sunrise.ch",
+  "superonline.com",
   "t-online.de",
+  "telenet.be",
+  "telia.com",
+  "terra.com.br",
   "tin.it",
   "tiscali.it",
   "tlen.pl",
@@ -75,20 +121,38 @@
   "tutanota.de",
   "ua.fm",
   "ukr.net",
+  "ukrpost.ua",
+  "uol.com.br",
+  "vipmail.hu",
   "virgilio.it",
   "voidash.bond",
   "vp.pl",
+  "vsnl.com",
+  "wanadoo.fr",
   "web.de",
+  "web.nl",
+  "wo.cn",
   "wp.pl",
+  "yahoo.co.uk",
   "yahoo.com",
+  "yahoo.de",
+  "yahoo.es",
+  "yahoo.fr",
+  "yahoo.it",
   "yandex.com",
   "yandex.ru",
+  "yeah.net",
+  "ziggo.nl",
+  "zipmail.com.br",
   "zoho.com",
   "zoznam.sk"
  ],
  "blocked": [
+  "guerrillamail.com",
   "mail.tm",
-  "tempmail.lol"
+  "mailinator.com",
+  "tempmail.lol",
+  "yopmail.com"
  ],
  "other": {},
  "domains": {
@@ -96,17 +160,41 @@
    "verdict": "ACCEPTED",
    "ts": "10-15 17:07:42"
   },
+  "139.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 18:06:03"
+  },
   "163.com": {
    "verdict": "ACCEPTED",
    "ts": "10-15 17:07:07"
+  },
+  "189.cn": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 18:06:37"
+  },
+  "abv.bg": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:49:04"
+  },
+  "adinet.com.uy": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 18:23:28"
   },
   "alice.it": {
    "verdict": "ACCEPTED",
    "ts": "10-15 17:42:42"
   },
+  "aliyun.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 18:08:21"
+  },
   "amorki.pl": {
    "verdict": "ACCEPTED",
    "ts": "10-15 17:15:49"
+  },
+  "ancel.com.uy": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 18:24:02"
   },
   "aol.com": {
    "verdict": "ACCEPTED",
@@ -131,7 +219,11 @@
   },
   "bluewin.ch": {
    "verdict": "ACCEPTED",
-   "ts": "10-15 17:35:44"
+   "ts": "10-15 18:15:19"
+  },
+  "bol.com.br": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 18:17:40"
   },
   "buziaczek.pl": {
    "verdict": "ACCEPTED",
@@ -141,9 +233,25 @@
    "verdict": "ACCEPTED",
    "ts": "10-15 17:21:03"
   },
+  "citromail.hu": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:47:55"
+  },
+  "claro.net.ar": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 18:21:44"
+  },
+  "clix.pt": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:57:46"
+  },
   "cock.li": {
    "verdict": "ACCEPTED",
    "ts": "10-15 16:58:51"
+  },
+  "daum.net": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 18:02:35"
   },
   "delfi.lt": {
    "verdict": "ACCEPTED",
@@ -165,9 +273,33 @@
    "verdict": "ACCEPTED",
    "ts": "10-15 17:16:23"
   },
+  "entel.cl": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 18:24:37"
+  },
   "fastmail.com": {
    "verdict": "ACCEPTED",
    "ts": "10-15 17:11:11"
+  },
+  "fibertel.com.ar": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 18:22:19"
+  },
+  "foxmail.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 18:07:47"
+  },
+  "free.fr": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:44:27"
+  },
+  "freemail.hu": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:47:20"
+  },
+  "globo.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 18:18:49"
   },
   "gmail.com": {
    "verdict": "ACCEPTED",
@@ -176,11 +308,11 @@
   },
   "gmx.at": {
    "verdict": "ACCEPTED",
-   "ts": "10-15 17:34:00"
+   "ts": "10-15 18:12:58"
   },
   "gmx.ch": {
    "verdict": "ACCEPTED",
-   "ts": "10-15 17:34:34"
+   "ts": "10-15 18:13:33"
   },
   "gmx.com": {
    "verdict": "ACCEPTED",
@@ -189,9 +321,21 @@
   "gmx.de": {
    "verdict": "ACCEPTED"
   },
+  "gmx.net": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 18:14:08"
+  },
+  "guerrillamail.com": {
+   "verdict": "BLOCKED",
+   "ts": "10-15 18:00:18"
+  },
+  "hanmail.net": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 18:03:10"
+  },
   "hispeed.ch": {
    "verdict": "ACCEPTED",
-   "ts": "10-15 17:36:18"
+   "ts": "10-15 18:16:30"
   },
   "hot.ee": {
    "verdict": "ACCEPTED",
@@ -201,6 +345,10 @@
    "verdict": "ACCEPTED",
    "ts": "10-15 17:01:52",
    "reg_path": "outlook-autoreg"
+  },
+  "hotmail.com.ar": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 18:22:53"
   },
   "hushmail.com": {
    "verdict": "ACCEPTED",
@@ -213,6 +361,14 @@
    "verdict": "ACCEPTED",
    "ts": "10-15 17:03:00"
   },
+  "ig.com.br": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 18:20:00"
+  },
+  "in.gr": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:46:11"
+  },
   "inbox.lv": {
    "verdict": "ACCEPTED",
    "ts": "10-15 17:36:53"
@@ -223,6 +379,10 @@
   },
   "interia.pl": {
    "verdict": "ACCEPTED"
+  },
+  "laposte.net": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:43:52"
   },
   "lavabit.com": {
    "verdict": "ACCEPTED",
@@ -241,6 +401,10 @@
    "ts": "10-15 17:10:02",
    "reg_path": "outlook-autoreg"
   },
+  "mail.bg": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:49:39"
+  },
   "mail.com": {
    "verdict": "ACCEPTED",
    "ts": "10-15 17:04:10"
@@ -257,6 +421,10 @@
    "verdict": "ACCEPTED",
    "reg_path": "mailru-signup"
   },
+  "mail.ru.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 18:11:14"
+  },
   "mail.tm": {
    "verdict": "BLOCKED",
    "reg_path": "blocklisted"
@@ -269,12 +437,36 @@
    "verdict": "ACCEPTED",
    "ts": "10-15 16:55:19"
   },
+  "mailinator.com": {
+   "verdict": "BLOCKED",
+   "ts": "10-15 18:00:52"
+  },
   "me.com": {
    "verdict": "ACCEPTED",
    "ts": "10-15 17:10:37"
   },
   "meta.ua": {
    "verdict": "ACCEPTED"
+  },
+  "meta.ua.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 18:12:24"
+  },
+  "myabv.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:50:13"
+  },
+  "mynet.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:58:20"
+  },
+  "nate.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 18:03:44"
+  },
+  "naver.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 18:02:01"
   },
   "o2.pl": {
    "verdict": "ACCEPTED",
@@ -291,6 +483,14 @@
   "op.pl": {
    "verdict": "ACCEPTED",
    "ts": "10-15 17:13:30"
+  },
+  "orange.fr": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:43:17"
+  },
+  "otenet.gr": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:46:46"
   },
   "outlook.com": {
    "verdict": "ACCEPTED",
@@ -329,30 +529,86 @@
    "verdict": "ACCEPTED",
    "ts": "10-15 17:06:31"
   },
+  "r7.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 18:20:35"
+  },
   "rambler.ru": {
    "verdict": "ACCEPTED",
    "ts": "10-15 17:18:42"
+  },
+  "rediffmail.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 18:09:30"
   },
   "runbox.com": {
    "verdict": "ACCEPTED",
    "ts": "10-15 17:11:46"
   },
+  "sapo.pt": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:56:35"
+  },
+  "scarlet.be": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:56:01"
+  },
   "seznam.cz": {
    "verdict": "ACCEPTED",
    "ts": "10-15 17:19:53"
   },
+  "sfr.fr": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:45:36"
+  },
+  "sify.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 18:10:05"
+  },
+  "sina.cn": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 18:04:54"
+  },
+  "sina.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 18:04:19"
+  },
+  "sohu.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 18:05:28"
+  },
   "startmail.com": {
    "verdict": "ACCEPTED",
    "ts": "10-15 16:55:55"
+  },
+  "sunrise.ch": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 18:15:54"
+  },
+  "superonline.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:59:44"
   },
   "t-online.de": {
    "verdict": "ACCEPTED",
    "ts": "10-15 17:08:16",
    "reg_path": "accepted-but-$0-observed"
   },
+  "telenet.be": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:55:27"
+  },
+  "telia.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:53:40"
+  },
   "tempmail.lol": {
    "verdict": "BLOCKED",
    "reg_path": "blocklisted"
+  },
+  "terra.com.br": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 18:18:15"
   },
   "tin.it": {
    "verdict": "ACCEPTED",
@@ -386,6 +642,18 @@
   "ukr.net": {
    "verdict": "ACCEPTED"
   },
+  "ukrpost.ua": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 18:11:50"
+  },
+  "uol.com.br": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 18:17:05"
+  },
+  "vipmail.hu": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:48:29"
+  },
   "virgilio.it": {
    "verdict": "ACCEPTED",
    "ts": "10-15 17:40:22"
@@ -398,16 +666,52 @@
    "verdict": "ACCEPTED",
    "ts": "10-15 17:14:05"
   },
+  "vsnl.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 18:10:39"
+  },
+  "wanadoo.fr": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:45:02"
+  },
   "web.de": {
    "verdict": "ACCEPTED"
+  },
+  "web.nl": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:54:17"
+  },
+  "wo.cn": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 18:07:12"
   },
   "wp.pl": {
    "verdict": "ACCEPTED",
    "reg_path": "wp-onelogin"
   },
+  "yahoo.co.uk": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:51:56"
+  },
   "yahoo.com": {
    "verdict": "ACCEPTED",
    "ts": "10-15 17:02:26"
+  },
+  "yahoo.de": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:51:22"
+  },
+  "yahoo.es": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:53:06"
+  },
+  "yahoo.fr": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:50:48"
+  },
+  "yahoo.it": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:52:31"
   },
   "yandex.com": {
    "verdict": "ACCEPTED",
@@ -416,6 +720,22 @@
   "yandex.ru": {
    "verdict": "ACCEPTED",
    "ts": "10-15 17:18:07"
+  },
+  "yeah.net": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 18:08:55"
+  },
+  "yopmail.com": {
+   "verdict": "BLOCKED",
+   "ts": "10-15 18:01:26"
+  },
+  "ziggo.nl": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:54:52"
+  },
+  "zipmail.com.br": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 18:21:09"
   },
   "zoho.com": {
    "verdict": "ACCEPTED",

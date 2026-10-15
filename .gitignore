@@ -15,3 +15,9 @@ probe3.log
 probe2.log
 out/
 probe_state.json
+dashboard/gw_key.txt
+dashboard/gw.log
+dashboard/gw.pid
+dashboard/dash_run.log
+dashboard/imported_bank.jsonl
+data/

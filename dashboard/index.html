@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ru" class="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#09090b">
+  <title>TREG FARM — Control plane</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --background: #09090b; --foreground: #fafafa; --card: #0c0c0e;
+      --popover: #101013; --border: #27272a; --input: #27272a;
+      --primary: #fafafa; --primary-foreground: #18181b;
+      --secondary: #27272a; --muted: #18181b; --muted-foreground: #a1a1aa;
+      --destructive: #ef4444; --success: #22c55e; --warning: #eab308;
+      --ring: #a1a1aa; --radius: .75rem;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--background); color: var(--foreground);
+      font-family: Inter, sans-serif; font-size: 14px; font-variant-numeric: tabular-nums;
+      -webkit-font-smoothing: antialiased; }
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
+    :focus-visible { outline: 2px solid var(--ring); outline-offset: 4px; }
+    ::selection { background: #3f3f46; color: white; }
+    .mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+    .hide, [hidden] { display: none !important; }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px 64px; }
+    header { display: flex; align-items: center; justify-content: space-between;
+      padding: 20px 0 16px; gap: 16px; flex-wrap: wrap; }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .brand h1 { font-size: 17px; font-weight: 700; letter-spacing: -.02em; margin: 0; }
+    .brand .sub { color: var(--muted-foreground); font-size: 12px; }
+    .card { background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); box-shadow: 0 2px 5px #0000001a; overflow: hidden; }
+    .card-header { padding: 22px 24px 0; }
+    .card-title { font-size: 14px; font-weight: 600; letter-spacing: -.02em; }
+    .card-description { margin-top: 5px; color: var(--muted-foreground); font-size: 12px; line-height: 1.6; }
+    .card-content { padding: 22px 24px 24px; }
+    .badge { display: inline-flex; align-items: center; gap: 6px; border: 1px solid transparent;
+      border-radius: 999px; padding: 3px 9px; font-size: 11px; font-weight: 500;
+      line-height: 1.5; white-space: nowrap; }
+    .badge-default { background: var(--primary); color: var(--primary-foreground); }
+    .badge-secondary { background: var(--secondary); color: #d4d4d8; }
+    .badge-outline { border-color: var(--border); color: var(--muted-foreground); background: transparent; }
+    .badge-success { color: #4ade80; background: #22c55e12; border-color: #22c55e30; }
+    .badge-destructive { color: #f87171; background: #ef444412; border-color: #ef444430; }
+    .btn { display: inline-flex; justify-content: center; align-items: center; gap: 8px;
+      min-height: 38px; padding: 8px 14px; border-radius: 7px; border: 1px solid transparent;
+      font-size: 12px; font-weight: 500; white-space: nowrap;
+      transition: background .15s, border-color .15s, opacity .15s; }
+    button:disabled { opacity: .4; cursor: not-allowed; }
+    .btn-default { background: var(--primary); color: var(--primary-foreground); }
+    .btn-default:hover:not(:disabled) { background: #d4d4d8; }
+    .btn-outline { border-color: var(--border); background: transparent; color: #e4e4e7; }
+    .btn-outline:hover:not(:disabled) { background: var(--muted); }
+    .btn-destructive { background: #dc2626; color: white; }
+    .btn-destructive:hover:not(:disabled) { background: #b91c1c; }
+    .input { width: 100%; min-height: 40px; padding: 9px 12px; border: 1px solid var(--input);
+      border-radius: 7px; background: var(--background); color: var(--foreground); }
+    .input::placeholder { color: #71717a; }
+    .tabs { display: flex; gap: 28px; border-bottom: 1px solid var(--border); overflow-x: auto; margin-bottom: 28px; }
+    .tabs button { position: relative; padding: 17px 1px; border: 0; background: none;
+      color: var(--muted-foreground); font-size: 13px; font-weight: 500; white-space: nowrap; }
+    .tabs button:hover { color: var(--foreground); }
+    .tabs button.on { color: var(--foreground); }
+    .tabs button.on::after { content: ""; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 2px; background: var(--primary); }
+    .stat-value { font-size: 36px; font-weight: 600; line-height: 1.2; letter-spacing: -.05em; min-height: 44px; }
+    .grid4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+    .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 16px; }
+    .pulse-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+    .is-live .pulse-dot { animation: live 2s ease-in-out infinite; }
+    @keyframes live { 50% { box-shadow: 0 0 0 4px #22c55e15; opacity: .6; } }
+    table { width: 100%; border-collapse: collapse; text-align: left; white-space: nowrap; }
+    th { background: #18181b80; color: var(--muted-foreground); font-size: 11px; font-weight: 500; padding: 13px 20px; }
+    td { padding: 13px 20px; font-size: 12px; border-top: 1px solid var(--border); }
+    tbody tr:hover { background: var(--muted); }
+    .tablewrap { overflow-x: auto; }
+    .terminal { margin: 0; padding: 20px 24px; background: #050506;
+      font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 12px;
+      line-height: 1.9; color: #a1a1aa; white-space: pre-wrap; overflow-wrap: anywhere;
+      max-height: 480px; overflow: auto; }
+    .terminal .ok { color: #4ade80; }
+    .terminal .bad { color: #f87171; }
+    .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .mt { margin-top: 16px; }
+    .dim { color: var(--muted-foreground); font-size: 12px; }
+    code.k { background: var(--muted); border: 1px solid var(--border); border-radius: 5px;
+      padding: 2px 7px; font-size: 11.5px; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <div>
+        <h1>TREG FARM</h1>
+        <div class="sub">control plane — treg.to autoreg &amp; gateway</div>
+      </div>
+    </div>
+    <div class="row">
+      <span id="liveBadge" class="badge badge-outline"><span class="pulse-dot"></span> refresh 15s</span>
+      <a class="btn btn-outline" href="https://t.me/AlStack" target="_blank">t.me/AlStack</a>
+    </div>
+  </header>
+
+  <div class="tabs" id="tabs">
+    <button data-t="ov" class="on">Обзор</button>
+    <button data-t="bank">Банк</button>
+    <button data-t="waves">Волны</button>
+    <button data-t="gw">Шлюз</button>
+    <button data-t="api">API</button>
+  </div>
+
+  <!-- OVERVIEW -->
+  <section id="t-ov">
+    <div class="grid4">
+      <div class="card"><div class="card-content">
+        <div class="dim">Организаций</div><div class="stat-value" id="s-orgs">—</div>
+      </div></div>
+      <div class="card"><div class="card-content">
+        <div class="dim">С грантом $1</div><div class="stat-value" id="s-paid">—</div>
+      </div></div>
+      <div class="card"><div class="card-content">
+        <div class="dim">Сумма на банках</div><div class="stat-value" id="s-usd">—</div>
+      </div></div>
+      <div class="card"><div class="card-content">
+        <div class="dim">Волны</div><div class="stat-value" id="s-loops">—</div>
+        <div class="dim mt" id="s-loopdet"></div>
+      </div></div>
+    </div>
+    <div class="card mt"><div class="card-header">
+      <div class="card-title">Двери</div>
+      <div class="card-description">realmail = реальные почтовые ящики (mail.tm maxxspace.com / tempmail.lol) · catchall = свои домены (.loc.cc) — безлимитно, $1/акк · voidash — домены заблокированы treg · github — пул suspended · tonline — промо выключено</div>
+    </div><div class="card-content tablewrap">
+      <table><thead><tr><th>Дверь</th><th>Записей</th><th>Оргов</th><th>Paid</th><th>$</th><th>Последняя</th><th>Ошибки</th></tr></thead>
+      <tbody id="doors"></tbody></table>
+    </div></div>
+  </section>
+
+  <!-- BANK -->
+  <section id="t-bank" hidden>
+    <div class="card"><div class="card-header row" style="justify-content:space-between">
+      <div><div class="card-title">Банк</div>
+      <div class="card-description">токены и почты маскированы</div></div>
+      <div class="row">
+        <select class="input" id="bankDoor" style="width:160px">
+          <option value="realmail">realmail</option><option value="catchall">catchall</option><option value="voidash">voidash</option>
+          <option value="github">github</option><option value="tonline">t-online</option>
+        </select>
+        <button class="btn btn-outline" id="bankReload">Обновить</button>
+      </div>
+    </div><div class="card-content tablewrap">
+      <table><thead><tr><th>Email</th><th>Org</th><th>ID</th><th>Token</th><th>$</th><th>Stage</th><th>Когда</th></tr></thead>
+      <tbody id="bankRows"></tbody></table>
+    </div></div>
+  </section>
+
+  <!-- WAVES -->
+  <section id="t-waves" hidden>
+    <div class="grid2">
+      <div class="card"><div class="card-header"><div class="card-title">Управление волнами</div>
+      <div class="card-description">catchall: 50 акков/волна, pace 25s · voidash: приостановлен (блок доменов)</div></div>
+      <div class="card-content">
+        <div class="row"><span class="dim" style="width:90px">catchall</span>
+          <span id="st-catchall" class="badge badge-outline">?</span>
+          <button class="btn btn-default" onclick="wave('catchall','start')">Старт</button>
+          <button class="btn btn-destructive" onclick="wave('catchall','stop')">Стоп</button></div>
+        <div class="row mt"><span class="dim" style="width:90px">voidash</span>
+          <span id="st-voidash" class="badge badge-outline">?</span>
+          <button class="btn btn-default" onclick="wave('voidash','start')">Старт</button>
+          <button class="btn btn-destructive" onclick="wave('voidash','stop')">Стоп</button></div>
+      </div></div>
+      <div class="card"><div class="card-header"><div class="card-title">Лог</div></div>
+      <div class="card-content">
+        <div class="row"><select class="input" id="logSel" style="width:220px">
+          <option>ca_wave.log</option><option>catchall_smoke.log</option>
+          <option>va_par_wave.log</option><option>gh_wave_big.log</option><option>v3_retest2.log</option>
+        </select><button class="btn btn-outline" onclick="loadLog()">Показать</button></div>
+        <pre class="terminal mt" id="logBox" style="max-height:300px">(выбери лог)</pre>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- GATEWAY -->
+  <section id="t-gw" hidden>
+    <div class="grid2">
+      <div class="card"><div class="card-header"><div class="card-title">Шлюз</div>
+      <div class="card-description">локальный прокси :8751 — ротация org-токенов банка, карантин мёртвых, hot-reload 60s</div></div>
+      <div class="card-content">
+        <div class="row"><span id="gwState" class="badge badge-outline">?</span>
+          <button class="btn btn-default" onclick="gwAct('start')">Запустить</button>
+          <button class="btn btn-destructive" onclick="gwAct('stop')">Остановить</button></div>
+        <div class="mt dim">URL: <code class="k">http://127.0.0.1:8751</code></div>
+        <div class="mt dim">Ключ: <code class="k mono" id="gwKey">—</code></div>
+        <div class="mt dim">Пул: <span id="gwPool">—</span> · живых: <span id="gwLive">—</span></div>
+      </div></div>
+      <div class="card"><div class="card-header"><div class="card-title">Подключить свой токен</div>
+      <div class="card-description">вставь org-токен treg (из личного кабинета treg.to → CLI token) — шлюз проверит и добавит его в ротацию</div></div>
+      <div class="card-content">
+        <input class="input mono" id="impTok" placeholder="eyJ1aWQ... (org token)">
+        <div class="row mt"><button class="btn btn-default" onclick="importTok()">Подключить</button>
+          <span class="dim" id="impRes"></span></div>
+        <div class="card-description mt">примеры запросов:<br>
+        <code class="k">POST /gw/img {"prompt":"..."}</code><br>
+        <code class="k">POST /gw/video {"prompt":"..."}</code><br>
+        <code class="k">GET /call/&lt;endpoint&gt;?param=...</code> — все 113 платформ каталога treg</div>
+      </div></div>
+    </div>
+  </section>
+
+  <!-- API -->
+  <section id="t-api" hidden>
+    <div class="grid2">
+      <div class="card"><div class="card-header"><div class="card-title">Баланс-проба</div>
+      <div class="card-description">последний catchall-орг → GET /orgs/{id}/balance</div></div>
+      <div class="card-content"><pre class="terminal" id="probeBox" style="max-height:260px">(жми Проба)</pre>
+        <button class="btn btn-outline mt" onclick="probe()">Проба</button></div></div>
+      <div class="card"><div class="card-header"><div class="card-title">Каталог treg.to</div>
+      <div class="card-description">113 платформ: x, tiktok, instagram, youtube, linkedin, reddit, image-gen, video-gen, web… Маркетплейс-эндпоинты (X и т.п.) требуют credentials в орге; платформенные (replicate image-gen, minimax video-gen) работают с баланса сразу</div></div>
+      <div class="card-content dim">
+        Проверено на свежем catchall-орге:<br>
+        <span class="badge badge-success mt">replicate.image-gen.flux-schnell → 201, $0.012</span><br>
+        <span class="badge badge-destructive mt">x.x.search-news → нужен X-credential (connections)</span><br>
+        <span class="badge badge-outline mt">баланс: GET /orgs/{id}/balance?limit=N</span>
+      </div></div>
+    </div>
+  </section>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+function tab(name){ $$('#tabs button').forEach(b=>b.classList.toggle('on', b.dataset.t===name));
+  ['ov','bank','waves','gw','api'].forEach(t=>$('#t-'+t).hidden = t!==name); }
+$$('#tabs button').forEach(b=>b.onclick=()=>tab(b.dataset.t));
+
+async function j(u,opt){ const r=await fetch(u,opt); return r.json(); }
+
+async function stats(){
+  const d = await j('/api/stats');
+  const t = d.doors._totals;
+  $('#s-orgs').textContent = t.orgs;
+  $('#s-paid').textContent = t.paid;
+  $('#s-usd').textContent = '$'+t.usd.toFixed(2);
+  const loops = d.loops; const run = Object.entries(loops).filter(([k,v])=>v).map(([k])=>k);
+  $('#s-loops').textContent = run.length ? run.length+' ▶' : '0';
+  $('#s-loopdet').textContent = run.length ? run.join(', ') : 'все остановлены';
+  $('#liveBadge').className = 'badge ' + (run.length? 'badge-success is-live':'badge-outline');
+  $('#liveBadge').innerHTML = '<span class="pulse-dot"></span> ' + (run.length? 'live':'idle');
+  let html='';
+  for (const [door,s] of Object.entries(d.doors)) {
+    if (door==='_totals') continue;
+    const fails = Object.entries(s.fails||{}).map(([k,v])=>k+':'+v).join(' ')||'—';
+    html += `<tr><td><b>${door}</b></td><td>${s.total}</td><td>${s.orgs}</td>
+      <td>${s.paid}</td><td>$${s.usd.toFixed(2)}</td>
+      <td class="dim">${(s.last||'').slice(0,19).replace('T',' ')}</td><td class="dim">${fails}</td></tr>`;
+  }
+  $('#doors').innerHTML = html;
+  for (const k of ['catchall','voidash']) {
+    const el = $('#st-'+k); if(!el) continue;
+    el.textContent = loops[k] ? 'работает' : 'остановлен';
+    el.className = 'badge ' + (loops[k] ? 'badge-success is-live' : 'badge-outline');
+  }
+}
+
+async function bank(){
+  const door = $('#bankDoor').value;
+  const d = await j('/api/bank?door='+door+'&limit=150');
+  $('#bankRows').innerHTML = d.rows.map(r=>`<tr>
+    <td class="mono">${r.email}</td><td class="mono">${r.org||'—'}</td><td>${r.org_id||'—'}</td>
+    <td class="mono dim">${r.token||'—'}</td>
+    <td>${r.bal_usd>0?'<span class="badge badge-success">$'+r.bal_usd+'</span>':'<span class="dim">$0</span>'}</td>
+    <td>${r.stage==='OK'||!r.stage?'<span class="badge badge-success">OK</span>':'<span class="badge badge-destructive">'+r.stage+'</span>'}</td>
+    <td class="dim">${(r.ts||'').slice(0,19).replace('T',' ')}</td></tr>`).join('');
+}
+$('#bankReload').onclick = bank; $('#bankDoor').onchange = bank;
+
+async function wave(door, action){
+  const r = await j('/api/wave',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({door,action})});
+  alert(JSON.stringify(r)); stats();
+}
+async function loadLog(){
+  const f = $('#logSel').value;
+  const r = await fetch('/api/log?f='+encodeURIComponent(f)+'&n=120');
+  let t = await r.text();
+  t = t.replace(/&/g,'&amp;').replace(/</g,'&lt;');
+  t = t.replace(/bal=\$1\.00|paid=\d+|OK/g, m=>'<span class="ok">'+m+'</span>');
+  t = t.replace(/err[^\n]{0,80}|FAIL[^\n]{0,40}|stage=\w+/g, m=>m.includes('stage=OK')?m:'<span class="bad">'+m+'</span>');
+  $('#logBox').innerHTML = t;
+  $('#logBox').scrollTop = $('#logBox').scrollHeight;
+}
+
+async function gwStatus(){
+  try {
+    const r = await fetch('http://127.0.0.1:8751/gw/status',{headers:{'X-GW-Key':localStorage.getItem('gwkey')||''}});
+    if (!r.ok) throw 0;
+    const d = await r.json();
+    localStorage.setItem('gwkey', d.key);
+    $('#gwState').textContent='работает'; $('#gwState').className='badge badge-success is-live';
+    $('#gwKey').textContent=d.key; $('#gwPool').textContent=d.pool; $('#gwLive').textContent=d.live;
+  } catch(e){
+    const d = await j('/api/gw').catch(()=>({running:false}));
+    $('#gwState').textContent = d.running? 'работает':'остановлен';
+    $('#gwState').className = 'badge ' + (d.running?'badge-success':'badge-outline');
+  }
+}
+async function gwAct(action){
+  const r = await j('/api/gw/'+action,{method:'POST'});
+  alert(JSON.stringify(r)); setTimeout(gwStatus, 1500);
+}
+async function importTok(){
+  const tok = $('#impTok').value.trim();
+  if(!tok) return;
+  const r = await j('/api/gw/import',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({token:tok})});
+  $('#impRes').textContent = r.ok ? ('OK: org '+ (r.org||'?') + ' баланс $' + (r.usd??'?')) : ('ошибка: '+(r.err||''));
+  if(r.ok) $('#impTok').value='';
+  gwStatus();
+}
+async function probe(){
+  $('#probeBox').textContent='...';
+  const d = await j('/api/probe');
+  $('#probeBox').textContent = JSON.stringify(d,null,2);
+}
+
+stats(); gwStatus(); setInterval(stats, 15000); setInterval(gwStatus, 30000);
+</script>
+<section style="padding:0 24px 24px">
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title">Mail doors — domain verdict matrix</div>
+      <div class="card-description dim">treg.to /auth/email/start probe · domains.json · auto-refresh 60s</div>
+    </div>
+    <div class="card-content" id="domains-body">
+      <div class="dim">loading…</div>
+    </div>
+  </div>
+</section>
+<script>
+function chip(d, cls){ return '<span class="mono" style="display:inline-block;padding:2px 8px;margin:2px;border-radius:6px;font-size:12px;border:1px solid '+cls.b+';color:'+cls.c+'">'+d+'</span>'; }
+const CLS = { ACCEPTED:{b:'#16a34a55',c:'#4ade80'}, BLOCKED:{b:'#dc262655',c:'#f87171'} };
+async function loadDomains(){
+  try{
+    const r = await fetch('/api/domains'); const d = await r.json();
+    if(d.err){ document.getElementById('domains-body').innerHTML='<div class="dim">'+d.err+'</div>'; return; }
+    let html = '<div class="row" style="gap:16px;margin-bottom:10px"><div><span class="stat-value">'+d.accepted_count+'</span> <span class="dim">accepted</span></div><div><span class="stat-value">'+d.blocked_count+'</span> <span class="dim">blocked</span></div><div><span class="stat-value">'+d.total+'</span> <span class="dim">probed</span></div></div>';
+    html += '<div style="margin-bottom:6px">'+ (d.accepted||[]).map(x=>chip(x,CLS.ACCEPTED)).join('') +'</div>';
+    html += '<div style="margin-bottom:6px">'+ (d.blocked||[]).map(x=>chip(x,CLS.BLOCKED)).join('') +'</div>';
+    const other = Object.entries(d.other||{});
+    if(other.length) html += '<div>'+ other.map(([k,v])=>chip(k+' ('+v+')',{b:'#ca8a0455',c:'#facc15'})).join('') +'</div>';
+    html += '<div class="dim" style="margin-top:8px">generated: '+(d.generated||'?')+'</div>';
+    document.getElementById('domains-body').innerHTML = html;
+  }catch(e){ document.getElementById('domains-body').innerHTML='<div class="dim">dash api offline</div>'; }
+}
+async function initSelects(){
+  try{
+    const d = await j('/api/bank?door=__none__&limit=1');
+    const sel = $('#bankDoor'); const cur = sel.value;
+    sel.innerHTML = (d.doors||[]).map(x=>'<option value="'+x+'">'+x+'</option>').join('');
+    if((d.doors||[]).includes(cur)) sel.value = cur;
+  }catch(e){}
+  try{
+    const r = await fetch('/api/log?f=__none__'); const t = await r.text();
+    const m = t.match(/available: (.*)$/m);
+    if(m){
+      const sel = $('#logSel'); const cur = sel.value;
+      const logs = m[1].split(',').map(x=>x.trim()).filter(Boolean);
+      sel.innerHTML = logs.map(x=>'<option>'+x+'</option>').join('');
+      if(logs.includes(cur)) sel.value = cur;
+    }
+  }catch(e){}
+}
+initSelects(); setInterval(initSelects, 120000);
+loadDomains(); setInterval(loadDomains, 60000);
+</script>
+</body>
+</html>
