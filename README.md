@@ -6,6 +6,23 @@ Each fresh account gets a **$1.00 signup grant** (~1600–2000 tool calls: X/Twi
 
 > Part of the free-tools series. More finds: [t.me/AlStack](https://t.me/AlStack)
 
+## Mail doors — which mailboxes pay the $1 grant (Oct 2026)
+
+The grant is **not** domain-reputation based (reversed from treg source):
+`promo_eligible = turnstile_outcome == "pass"`, paid once per *promo inbox*
+(+tags and gmail dots dedupe; disposable domains sit in an env blocklist;
+gmail = $0 for alias farms because of the inbox dedupe).
+
+- `PROVIDERS.md` — ranked provider/door matrix (80+ domains, probe-verified)
+- `domain_probe3.py` — resumable blocklist prober: cloakbrowser token factory
+  (`window.tregCaptcha.token('email_start')`, instant PASS tokens) + 30 req/15 min per-IP pacing
+- `treg_farm_v3.py` — current farm core (turnstile era) incl. `TokenFactory`
+- `WP_REGISTER_API.md` — decoded WP Holding (wp.pl / o2.pl / tlen.pl) register API contract
+- `gh_oauth_reg.py` / `gh_session.py` — GitHub OAuth door (no mailbox needed)
+
+Turnstile sitekey (public, in page HTML): `0x4AAAAAAFVJ1qUhtZ_qG-N7`.
+`/auth/email/start` now requires `captcha_token` — the old "zero captcha" flow below is historical.
+
 ## How it works (full protocol, reverse-engineered)
 
 ```

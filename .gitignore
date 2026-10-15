@@ -4,3 +4,7 @@ treg_farm_state.json
 *.log
 __pycache__/
 .venv/
+_push2.py
+_scan.py
+_migrate_push.py
+probe_state.json.tmp
