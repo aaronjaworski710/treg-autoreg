@@ -13,10 +13,13 @@ The grant is **not** domain-reputation based (reversed from treg source):
 (+tags and gmail dots dedupe; disposable domains sit in an env blocklist;
 gmail = $0 for alias farms because of the inbox dedupe).
 
-- `PROVIDERS.md` — ranked provider/door matrix (80+ domains, probe-verified)
+- `PROVIDERS.md` — ranked provider/door matrix (235-domain probe list, verdicts live in `domains.json`)
 - `domain_probe3.py` — resumable blocklist prober: cloakbrowser token factory
   (`window.tregCaptcha.token('email_start')`, instant PASS tokens) + 30 req/15 min per-IP pacing
+- `domains.json` — machine-readable verdict matrix (regenerate: `python build_domains_json.py`)
 - `treg_farm_v3.py` — current farm core (turnstile era) incl. `TokenFactory`
+- `treg_outlook.py` — treg registration through real Outlook/Hotmail mailboxes (Graph OTP, no IMAP)
+- `OUTLOOK_AUTOREG.md` — Outlook mass-autoreg toolchain (free Arkose press&hold, MIT fork)
 - `WP_REGISTER_API.md` — decoded WP Holding (wp.pl / o2.pl / tlen.pl) register API contract
 - `gh_oauth_reg.py` / `gh_session.py` — GitHub OAuth door (no mailbox needed)
 

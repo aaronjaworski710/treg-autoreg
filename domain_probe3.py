@@ -40,6 +40,44 @@ DOMAINS = [
     # known controls
     "gmail.com", "proton.me", "voidash.bond",
     "guerrillamail.com", "mailinator.com", "tempmail.lol", "mail.tm", "yopmail.com",
+    # ---- batch 2: Asia ----
+    "naver.com", "daum.net", "hanmail.net", "nate.com",
+    "sina.com", "sina.cn", "sohu.com", "139.com", "189.cn", "wo.cn", "foxmail.com", "aliyun.com", "yeah.net",
+    "rediffmail.com", "sify.com", "vsnl.com",
+    "mail.ru.com", "ukrpost.ua", "meta.ua.com",
+    "gmx.at", "gmx.ch", "gmx.net", "bluewin.ch", "sunrise.ch", "hispeed.ch",
+    # ---- batch 2: LatAm ----
+    "uol.com.br", "bol.com.br", "terra.com.br", "globo.com", "ig.com.br", "r7.com", "zipmail.com.br",
+    "claro.net.ar", "fibertel.com.ar", "hotmail.com.ar",
+    "adinet.com.uy", "ancel.com.uy",
+    "entel.cl", "vtr.net", "movistar.cl",
+    "terra.com.co", "hotmail.co", "une.net.co",
+    # ---- batch 2: Middle East / Africa ----
+    "maktoob.com", "yemen.net.ye", "emailnator.com",
+    "webmail.co.za", "mweb.co.za", "absamail.co.za",
+    "hotmail.co.za", "iafrica.com",
+    "wanadoo.ma", "menara.ma", "inwi.ma",
+    "topnet.tn", "planet.tn",
+    "etisalat.ae", "du.ae",
+    # ---- batch 2: more EU / regional ----
+    "wp.eu", "onet.eu", "onet.com.pl", "opoczta.pl", "poczta.onet.pl", "poczta.wp.pl", "poczta.fm.pl",
+    "gazeta.pl", "o2.eu", "interia.eu", "eu.interia.pl",
+    "email.cz", "centrum.cz", "atlas.cz", "volny.cz", "post.cz", "emaily.cz",
+    "zoznam.sk", "azet.sk", "post.sk", "stonehenge.sk",
+    "net.hr", "zg.t-com.hr", "vip.hr", "t-com.me",
+    "email.si", "volja.net", "siol.net",
+    "mymail.ro", "yahoo.ro", "k.ro", "mmail.ro",
+    "abv.net", "abv.pro",
+    "mail.pt", "gmail.pt",
+    "inbox.eu", "inbox.lt", "one.lv", "mail.dk", "ofir.dk", "jubii.dk",
+    "spray.se", "passagen.se", "bredband.net", "comhem.se",
+    "suomi24.fi", "luukku.com", "kolumbus.fi", "pp.inet.fi",
+    # ---- batch 2: privacy / niche ----
+    "tuta.com", "protonmail.ch", "pm.me", "skiff.com", "tutanota.net",
+    "ctemplar.com", "mailnull.com", "spamgourmet.com", "33mail.com", "anonaddy.me", "mailer.me",
+    "guerrillamail.info", "guerrillamail.net", "sharklasers.com", "grr.la", "guerrillamailblock.com",
+    "10minutemail.com", "throwawaymail.com", "temp-mail.org", "getnada.com", "mohmal.com",
+    "emailfake.com", "fakemail.net", "maildrop.cc", "discard.email",
 ]
 
 DB = r"C:/Users/User/Desktop/proxy_bot/proxies.db"

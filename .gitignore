@@ -8,3 +8,10 @@ _push2.py
 _scan.py
 _migrate_push.py
 probe_state.json.tmp
+_gh_search.py
+_kill_probe3.py
+build_domains_json.py.tmp
+probe3.log
+probe2.log
+out/
+probe_state.json

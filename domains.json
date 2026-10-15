@@ -1,0 +1,429 @@
+{
+ "generated": "2026-10-15 17:42:57",
+ "source": "treg.to /auth/email/start probe (domain_probe3.py, TokenFactory PASS tokens)",
+ "total": 82,
+ "accepted_count": 80,
+ "blocked_count": 2,
+ "accepted": [
+  "126.com",
+  "163.com",
+  "alice.it",
+  "amorki.pl",
+  "aol.com",
+  "aon.at",
+  "atlas.sk",
+  "azet.sk",
+  "bk.ru",
+  "bluewin.ch",
+  "buziaczek.pl",
+  "centrum.cz",
+  "cock.li",
+  "delfi.lt",
+  "disroot.org",
+  "elude.in",
+  "email.cz",
+  "email.ua",
+  "fastmail.com",
+  "gmail.com",
+  "gmx.at",
+  "gmx.ch",
+  "gmx.com",
+  "gmx.de",
+  "hispeed.ch",
+  "hot.ee",
+  "hotmail.com",
+  "hushmail.com",
+  "i.ua",
+  "icloud.com",
+  "inbox.lv",
+  "inbox.ru",
+  "interia.pl",
+  "lavabit.com",
+  "libero.it",
+  "list.ru",
+  "live.com",
+  "mail.com",
+  "mail.ee",
+  "mail.lv",
+  "mail.ru",
+  "mailbox.org",
+  "mailfence.com",
+  "me.com",
+  "meta.ua",
+  "o2.pl",
+  "one.lt",
+  "onet.pl",
+  "op.pl",
+  "outlook.com",
+  "pm.me",
+  "poczta.fm",
+  "post.cz",
+  "posteo.de",
+  "proton.me",
+  "protonmail.com",
+  "qq.com",
+  "rambler.ru",
+  "runbox.com",
+  "seznam.cz",
+  "startmail.com",
+  "t-online.de",
+  "tin.it",
+  "tiscali.it",
+  "tlen.pl",
+  "tuta.io",
+  "tutanota.com",
+  "tutanota.de",
+  "ua.fm",
+  "ukr.net",
+  "virgilio.it",
+  "voidash.bond",
+  "vp.pl",
+  "web.de",
+  "wp.pl",
+  "yahoo.com",
+  "yandex.com",
+  "yandex.ru",
+  "zoho.com",
+  "zoznam.sk"
+ ],
+ "blocked": [
+  "mail.tm",
+  "tempmail.lol"
+ ],
+ "other": {},
+ "domains": {
+  "126.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:07:42"
+  },
+  "163.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:07:07"
+  },
+  "alice.it": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:42:42"
+  },
+  "amorki.pl": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:15:49"
+  },
+  "aol.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:03:35"
+  },
+  "aon.at": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:35:09"
+  },
+  "atlas.sk": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:33:25"
+  },
+  "azet.sk": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:22:16"
+  },
+  "bk.ru": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:17:32",
+   "reg_path": "mailru-signup"
+  },
+  "bluewin.ch": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:35:44"
+  },
+  "buziaczek.pl": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:14:40"
+  },
+  "centrum.cz": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:21:03"
+  },
+  "cock.li": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 16:58:51"
+  },
+  "delfi.lt": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:38:38"
+  },
+  "disroot.org": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 16:56:29"
+  },
+  "elude.in": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:00:43"
+  },
+  "email.cz": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:20:28"
+  },
+  "email.ua": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:16:23"
+  },
+  "fastmail.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:11:11"
+  },
+  "gmail.com": {
+   "verdict": "ACCEPTED",
+   "note": "$0 promo_inbox dedup",
+   "reg_path": "$0-promo-dedup"
+  },
+  "gmx.at": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:34:00"
+  },
+  "gmx.ch": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:34:34"
+  },
+  "gmx.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:04:45"
+  },
+  "gmx.de": {
+   "verdict": "ACCEPTED"
+  },
+  "hispeed.ch": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:36:18"
+  },
+  "hot.ee": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:39:13"
+  },
+  "hotmail.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:01:52",
+   "reg_path": "outlook-autoreg"
+  },
+  "hushmail.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:00:08"
+  },
+  "i.ua": {
+   "verdict": "ACCEPTED"
+  },
+  "icloud.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:03:00"
+  },
+  "inbox.lv": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:36:53"
+  },
+  "inbox.ru": {
+   "verdict": "ACCEPTED",
+   "reg_path": "mailru-signup"
+  },
+  "interia.pl": {
+   "verdict": "ACCEPTED"
+  },
+  "lavabit.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 16:59:32"
+  },
+  "libero.it": {
+   "verdict": "ACCEPTED"
+  },
+  "list.ru": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:16:58",
+   "reg_path": "mailru-signup"
+  },
+  "live.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:10:02",
+   "reg_path": "outlook-autoreg"
+  },
+  "mail.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:04:10"
+  },
+  "mail.ee": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:39:48"
+  },
+  "mail.lv": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:37:28"
+  },
+  "mail.ru": {
+   "verdict": "ACCEPTED",
+   "reg_path": "mailru-signup"
+  },
+  "mail.tm": {
+   "verdict": "BLOCKED",
+   "reg_path": "blocklisted"
+  },
+  "mailbox.org": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 16:58:16"
+  },
+  "mailfence.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 16:55:19"
+  },
+  "me.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:10:37"
+  },
+  "meta.ua": {
+   "verdict": "ACCEPTED"
+  },
+  "o2.pl": {
+   "verdict": "ACCEPTED",
+   "reg_path": "wp-onelogin"
+  },
+  "one.lt": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:38:03"
+  },
+  "onet.pl": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:12:55"
+  },
+  "op.pl": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:13:30"
+  },
+  "outlook.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:01:17",
+   "reg_path": "outlook-autoreg"
+  },
+  "pm.me": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 16:52:59",
+   "reg_path": "proton-signup"
+  },
+  "poczta.fm": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:15:15",
+   "reg_path": "wp-onelogin"
+  },
+  "post.cz": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:21:38"
+  },
+  "posteo.de": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 16:57:04"
+  },
+  "proton.me": {
+   "verdict": "ACCEPTED",
+   "note": "paid $1 proven",
+   "reg_path": "proton-signup"
+  },
+  "protonmail.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 16:52:24",
+   "reg_path": "proton-signup"
+  },
+  "qq.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:06:31"
+  },
+  "rambler.ru": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:18:42"
+  },
+  "runbox.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:11:46"
+  },
+  "seznam.cz": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:19:53"
+  },
+  "startmail.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 16:55:55"
+  },
+  "t-online.de": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:08:16",
+   "reg_path": "accepted-but-$0-observed"
+  },
+  "tempmail.lol": {
+   "verdict": "BLOCKED",
+   "reg_path": "blocklisted"
+  },
+  "tin.it": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:41:31"
+  },
+  "tiscali.it": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:40:56"
+  },
+  "tlen.pl": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:12:21",
+   "reg_path": "wp-onelogin"
+  },
+  "tuta.io": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 16:54:44"
+  },
+  "tutanota.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 16:53:34"
+  },
+  "tutanota.de": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 16:54:09"
+  },
+  "ua.fm": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:19:18"
+  },
+  "ukr.net": {
+   "verdict": "ACCEPTED"
+  },
+  "virgilio.it": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:40:22"
+  },
+  "voidash.bond": {
+   "verdict": "ACCEPTED",
+   "note": "paid $1 proven (catchall door)"
+  },
+  "vp.pl": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:14:05"
+  },
+  "web.de": {
+   "verdict": "ACCEPTED"
+  },
+  "wp.pl": {
+   "verdict": "ACCEPTED",
+   "reg_path": "wp-onelogin"
+  },
+  "yahoo.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:02:26"
+  },
+  "yandex.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:09:27"
+  },
+  "yandex.ru": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:18:07"
+  },
+  "zoho.com": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:05:20"
+  },
+  "zoznam.sk": {
+   "verdict": "ACCEPTED",
+   "ts": "10-15 17:22:50"
+  }
+ }
+}
