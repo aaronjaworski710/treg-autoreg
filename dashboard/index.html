@@ -126,7 +126,7 @@
         <div class="dim">С грантом $1</div><div class="stat-value" id="s-paid">—</div>
       </div></div>
       <div class="card"><div class="card-content">
-        <div class="dim">Сумма на банках</div><div class="stat-value" id="s-usd">—</div>
+        <div class="dim">Живые сейчас (90 мин)</div><div class="stat-value" id="s-usd">—</div>
       </div></div>
       <div class="card"><div class="card-content">
         <div class="dim">Волны</div><div class="stat-value" id="s-loops">—</div>
@@ -137,7 +137,7 @@
       <div class="card-title">Двери</div>
       <div class="card-description">realmail = реальные почтовые ящики (mail.tm maxxspace.com / tempmail.lol) · catchall = свои домены (.loc.cc) — безлимитно, $1/акк · voidash — домены заблокированы treg · github — пул suspended · tonline — промо выключено</div>
     </div><div class="card-content tablewrap">
-      <table><thead><tr><th>Дверь</th><th>Записей</th><th>Оргов</th><th>Paid</th><th>$</th><th>Последняя</th><th>Ошибки</th></tr></thead>
+      <table><thead><tr><th>Дверь</th><th>Записей</th><th>Оргов</th><th>Paid</th><th>$</th><th>Live 90м</th><th>Последняя</th><th>Ошибки</th></tr></thead>
       <tbody id="doors"></tbody></table>
     </div></div>
   </section>
@@ -246,7 +246,9 @@ async function stats(){
   const t = d.doors._totals;
   $('#s-orgs').textContent = t.orgs;
   $('#s-paid').textContent = t.paid;
-  $('#s-usd').textContent = '$'+t.usd.toFixed(2);
+  let liveN=0, liveU=0;
+  for (const [dr,s] of Object.entries(d.doors)) { if(dr!=='_totals'){ liveN+=s.live_now||0; liveU+=s.live_usd||0; } }
+  $('#s-usd').textContent = liveN+' · $'+liveU.toFixed(2);
   const loops = d.loops; const run = Object.entries(loops).filter(([k,v])=>v).map(([k])=>k);
   $('#s-loops').textContent = run.length ? run.length+' ▶' : '0';
   $('#s-loopdet').textContent = run.length ? run.join(', ') : 'все остановлены';
@@ -258,6 +260,7 @@ async function stats(){
     const fails = Object.entries(s.fails||{}).map(([k,v])=>k+':'+v).join(' ')||'—';
     html += `<tr><td><b>${door}</b></td><td>${s.total}</td><td>${s.orgs}</td>
       <td>${s.paid}</td><td>$${s.usd.toFixed(2)}</td>
+      <td><b>${s.live_now??0}</b> · $${(s.live_usd??0).toFixed(2)}</td>
       <td class="dim">${(s.last||'').slice(0,19).replace('T',' ')}</td><td class="dim">${fails}</td></tr>`;
   }
   $('#doors').innerHTML = html;

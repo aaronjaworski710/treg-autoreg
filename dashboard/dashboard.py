@@ -104,6 +104,12 @@ def _tok(r):
     return r.get("org_token") or r.get("token") or ""
 
 
+def _live_cutoff():
+    """UTC ISO prefix for 'registered within last 90 min' (treg revokes grants ~1-1.5h after signup)."""
+    import datetime as _dt
+    return (_dt.datetime.now(_dt.timezone.utc) - _dt.timedelta(minutes=90)).strftime("%Y-%m-%dT%H:%M")
+
+
 def door_stats():
     out = {}
     total_orgs = total_paid = 0
@@ -119,8 +125,11 @@ def door_stats():
                 s = r.get("stage", "?")
                 stages[s] = stages.get(s, 0) + 1
         last_ts = rows[-1].get("ts", "") if rows else ""
+        live = [r for r in paid if (r.get("ts") or "") >= _live_cutoff()]
         out[door] = {"total": len(rows), "orgs": len(orgs), "paid": len(paid),
-                     "usd": round(usd, 2), "fails": stages, "last": last_ts}
+                     "usd": round(usd, 2), "fails": stages, "last": last_ts,
+                     "live_now": len(live),
+                     "live_usd": round(sum(int(r.get("balance_micro") or 0) for r in live) / 1e6, 2)}
         total_orgs += len(orgs)
         total_paid += len(paid)
         total_usd += usd

@@ -2,6 +2,7 @@
 # Rotates bank tokens, quarantines dead ones, hot-reloads banks every 60s.
 # Port 8751. Local key: gw_key.txt (auto-generated).
 import json, os, random, re, threading, time, glob, sys
+from datetime import datetime, timezone, timedelta
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import urlparse, parse_qs
 import urllib.request, urllib.error
@@ -60,9 +61,12 @@ def load_pool():
                     continue
                 seen.add(tok)
                 pool.append({"token": tok, "org_id": r.get("org_id"),
-                             "src": os.path.basename(path), "fails": 0, "q": False})
+                             "src": os.path.basename(path), "fails": 0, "q": False,
+                             "ts": r.get("ts") or ""})
         except FileNotFoundError:
             pass
+    # treg revokes grants ~1-1.5h after signup — newest tokens first
+    pool.sort(key=lambda p: str(p["ts"]), reverse=True)
     with _lock:
         _pool[:] = pool
         _last_load = time.time()
@@ -83,7 +87,20 @@ def next_tok():
         live = [p for p in _pool if not p["q"]]
         if not live:
             return None
-        p = live[_idx % len(live)]
+        # prefer tokens inside the ~1.5h survival window (ts desc sorted pool)
+        cutoff = datetime.now(timezone.utc).replace(microsecond=0) - timedelta(minutes=90)
+        fresh = []
+        for p in live:
+            try:
+                ts = datetime.fromisoformat(p["ts"].replace("Z", "+00:00"))
+                if ts.tzinfo is None:
+                    ts = ts.replace(tzinfo=timezone.utc)
+                if ts >= cutoff:
+                    fresh.append(p)
+            except Exception:
+                pass
+        cand = fresh or live
+        p = cand[_idx % len(cand)]
         _idx += 1
         return p
 
