@@ -12,6 +12,7 @@ GMAIL = os.environ.get("TREG_CATCHALL_GMAIL", "")
 APP_PW = os.environ.get("GMAIL_APP_PW", "")
 if not GMAIL or not APP_PW:
     sys.exit("set TREG_CATCHALL_GMAIL + GMAIL_APP_PW (gmail address receiving the ForwardEmail catch-all copies)")
+PROXY = ""  # set via --proxy / TREG_PROXY; used by TokenFactory browser + API sessions
 WORDS1 = ["nova","lumen","ferra","quartz","onyx","delta","astra","vela","orion","pyra","zephyr","koda","rima","solis","tavi","nexa","umbra","cyra","halo","jure"]
 WORDS2 = ["works","labs","studio","forge","works2","hub","space","craft","logic","base"]
 
@@ -83,6 +84,8 @@ def reg_one(tf, domain, used_orgs, used_addr):
     used_addr.add(addr)
     sess = requests.Session()
     sess.headers.update(HDRS)
+    if PROXY:
+        sess.proxies = {"http": PROXY, "https": PROXY}
     rec = {"email": addr, "domain": domain, "door": "catchall",
            "ts": datetime.now(timezone.utc).isoformat()}
     since_ts = time.time()
@@ -166,9 +169,13 @@ def main():
     ap.add_argument("count", type=int)
     ap.add_argument("--pace", type=int, default=35)
     ap.add_argument("--domains", default="vortexio.loc.cc,apexnode.loc.cc,nexuslab.loc.cc")
+    ap.add_argument("--proxy", default=os.environ.get("TREG_PROXY", ""),
+                    help="http(s) proxy for BOTH token browser and API calls (scale beyond 1-IP rate budget)")
     a = ap.parse_args()
+    global PROXY
+    PROXY = (a.proxy or "").strip()
     domains = [x.strip() for x in a.domains.split(",") if x.strip()]
-    tf = TokenFactory()
+    tf = TokenFactory(proxy=PROXY or None)
     tf.launch()
     used_orgs, used_addr = set(), set()
     # preload bank to avoid org-name collisions

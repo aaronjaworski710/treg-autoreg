@@ -10,6 +10,9 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 PY = sys.executable
 N = os.environ.get("N", "50")
 PACE = os.environ.get("PACE", "40")
+WAIT = os.environ.get("WAIT", "1") == "1"   # WAIT=0 -> unconditional waves (multi-worker)
+TAG = os.environ.get("TAG", "")
+BOOT_DELAY = int(os.environ.get("BOOT_DELAY", "0"))  # stagger start, seconds
 
 
 def wave_running():
@@ -38,9 +41,11 @@ def log(msg):
 
 
 def main():
-    log("chainer start (N=%s PACE=%s)" % (N, PACE))
+    log("chainer%s start (N=%s PACE=%s WAIT=%d boot_delay=%ds)" % (TAG, N, PACE, WAIT, BOOT_DELAY))
+    if BOOT_DELAY:
+        time.sleep(BOOT_DELAY)
     while True:
-        if wave_running():
+        if WAIT and wave_running():
             log("wave already running — waiting 60s")
             time.sleep(60)
             continue

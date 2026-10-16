@@ -33,7 +33,8 @@ def imap_host(addr):
 class TokenFactory:
     """cloakbrowser page on treg.to/app with Sign-in form open; native
     window.tregCaptcha.token('email_start') mints fresh single-use tokens (~0s)."""
-    def __init__(self):
+    def __init__(self, proxy=None):
+        self.proxy = proxy or None
         self.b = None
         self.pg = None
         self.minted = 0
@@ -41,7 +42,7 @@ class TokenFactory:
     def launch(self):
         import cloakbrowser
         self.close()
-        self.b = cloakbrowser.launch(headless=True)
+        self.b = cloakbrowser.launch(headless=True, proxy=self.proxy)
         try:
             self.pg = self.b.new_page()
         except Exception:
